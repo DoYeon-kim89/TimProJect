@@ -36,7 +36,7 @@ window.onload=function(){
 	var f = document.createElement("div");
 	//f div 생성
 	console.log("머냥"+typeof(fourty));
-	f.setAttribute("style", "width: 50px; position: relative; left: 700px; top: -1500px; height:50px");
+	f.setAttribute("style", "width: 50px; position: relative; left: 988px; top: -1500px; height:50px");
 	//f에 40을 넣는다.
 	document.body.appendChild(f);
 	//time div의 자식노드로 f div를 넣는다.
