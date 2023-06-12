@@ -5,7 +5,7 @@
     <head>
         <title></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/style7.css">
+        <link rel="stylesheet" href="css/style9.css">
         <script src="js/script2.js"></script>
     </head>
     <body>
@@ -44,17 +44,15 @@
                     </div>
                     <div class="stopWatch">
                         <div class="time">
-                            
+                        	
                         </div>
-                        <!--<div class="start">
-                            시작
-                        </div>
-                        <div class="end">
-                            정지
-                        </div>  
-                        <div class="toZero">
-                            초기화
-                        </div>-->
+                        <div class="boon">
+                        		분
+   							</div>
+   	                        <div class="cho">
+                            	초
+                            </div>
+                      
                     </div>
                     <div class="problem_group">
                         <div class="number" name="">

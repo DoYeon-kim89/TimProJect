@@ -10,33 +10,13 @@
     </head>
     <body>
         <div id="wrap">
-            <div class="header">
-                <ul class="menu">
-                    <li><a href="information.jsp">시험안내</a><li>
-                    <li><a href="#">오답노트</a></li>
-                    <li><a href="mypage.jsp">마이 페이지</a></li>
-                </ul>
-                <!--<div class="pyo">
-                    <img src="images/arrow.png" alt="arrow">
-                </div>
-                <ul class="menu_expended_1">
-                    <li><a href="#">대형</a></li>
-                    <li><a href="#">보통</a></li>
-                    <li><a href="#">소형</a></li>
-                    <li><a href="#">특수</a></li>
-                    <li><a href="#">|</a></li>
-                </ul>
-                
-                <ul class="menu_expended_2">
-                    <li><a href="#">보통</a></li>
-                    <li><a href="#">소형</a></li>
-                    <li><a href="#">원동기장치자전거 면허</a></li>
-                </ul>-->
-            </div>
+        
+           <jsp:include page="header.jsp"></jsp:include>
+           
             <div class="contents">
                 <div class="contents_1">
                     <div class="car">
-                        <a href="mock.jsp">
+                        <a href="mock_back.jsp">
                             <img src="images/car.png" alt="모의고사">
                             <span>모의고사 40제</span>
                         </a>

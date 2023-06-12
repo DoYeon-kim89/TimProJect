@@ -13,12 +13,7 @@
     
     %>
         <div id="wrap">
-            <div class="header">
-                <ul class="menu">
-                    <li><a href="information.html">시험안내</a><li>
-                    <li><a href="#">오답노트</a></li>
-                    <li><a href="#">마이 페이지</a></li>
-                </ul>
+           <jsp:include page="header.jsp"></jsp:include>
                 
             <div class="contents">
                     <div class="inside">            

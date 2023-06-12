@@ -22,14 +22,7 @@
     	
     	%>
         <div id="wrap">
-            <div class="header">
-                <ul class="menu">
-                    <li><a href="information.html">시험안내</a><li>
-                    <li><a href="#">오답노트</a></li>
-                    <li><a href="mypage(Rina ver).jsp">마이 페이지</a></li>
-                </ul>
-                
-            </div>
+            <jsp:include page="header.jsp"></jsp:include>
             <div class="contents">
                     <div class="inside">  
                     <%if(!login){    %>    
@@ -39,13 +32,8 @@
                             <div class="lnj">                    
                                 <div class="login"><a href="index.jsp"><input type="submit" style="opacity:0;">로그인</a></div>
                                 
-                                <div class="find">
-                                    <a href="findPw.html">비밀번호 찾기</a>
-                                    |
-                                    <a href="findId.html">아이디 찾기</a>
-                                    |
-                                    <a href="join.jsp">회원가입</a>
-                                </div>
+                               
+                                <jsp:include page="find.jsp"></jsp:include>
                                                     
                             </div>
                         </form>
@@ -56,6 +44,7 @@
                 			<h3><% out.println(session.getAttribute("user_tel"));%>로 전화가 갈 수 있습니다. 주의하세요</h3>
                 			<a href="menu.jsp"><input type="button">문제풀러가자 </a>
 							<input type="button" value="로그아웃!" onclick="logout()">
+							<!--<jsp:include page="find.jsp"></jsp:include>-->
 						<% } %>	
                 </div>
             </div>
