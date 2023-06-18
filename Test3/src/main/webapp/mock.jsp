@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <!-- 한문제씩 보기 페이지 -->
 <!DOCTYPE html>
 <html lang="ko">
     <head>
