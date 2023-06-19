@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="beans.quest" %>
     <!--드래그로 보기 페이지입니다-->
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,7 +16,7 @@
         
                 <jsp:include page="header.jsp"></jsp:include>
                
-            </div>
+           
             <div class="contents">
                 
                 <div class="many">
@@ -54,7 +56,7 @@
                    		2.  ${quest_ex2 }
                     </div>
                     <div class="three">
-                        3. ${quest_ex3 }
+                        3. ${ql.getQuest_ex3() }
                     </div>
                     <div class="four">
                         4. ${quest_ex4 }
