@@ -51,8 +51,10 @@
 					ql.add(q);
 					
 				}	
-				response.sendRedirect("mock(onetoone).jsp");
-				request.setAttribute("questList", ql);
+				session.setAttribute("questList", ql);
+				//ql객체를 session에 setAttribute해줬다. 이제 세션에 담겨있으니, 이 페이지 밖에서,
+				//세션이 만료되지 않는 한, questList에 (안에)있는 모든 것을 이용할 수 있다.
+				//request.setAttribute("questList", ql);
 				
 				//ql의 사이즈가 몇인지
 				System.out.println("ql의 사이즈는 :"+ql.size());
@@ -60,11 +62,38 @@
 				System.out.println("ql의 3번인덱스는 :"+ql.get(3));
 				//ql.get(3) 현재 이 상태는, Object타입데이터 뭉텅이라고 봐야한다. 
 				
+		/*		for (int i=0; i<10; i++) {
+					int str= (int)ql.get(i).getQuest_seq();
+					System.out.println(str);
+				}
+				System.out.println(ql.get(3).getQuest_seq());
+		*/
+				
+		
+		quest randomNumber = new quest();
+		ArrayList<Integer> rn = randomNumber.getRandom(); 
+		//System.out.println(qi);
+		
+		HttpSession session2=request.getSession();
+		session2.setAttribute("randomNumber",rn);
+		
+		int pn= 0;
+	
+		//HttpSession session3=request.getSession();
+		session2.setAttribute("pageNum",pn);
+		
+		
+		
+		
+				response.sendRedirect("mock.jsp");
 				
 				//참고로, list는 ArrayList타입이니까(Object), 
 				//실제 안에 들어 있는 String타입으로 형변환(캐스팅) 해주고 변수에 담아 준다.
 					
 	
+				
+				//1번 form태그를 만들되, 인풋히든태그로 mock.jsp로 객체 데이터 보내주기
+				//2번 session에 담아서 사용하기,
 					
 					
 					
@@ -148,7 +177,7 @@
 					System.out.println("접속 해제 중 오류 발생 : "+ex);
 				}
 			}
-			System.out.println("동작 끝읕");
+			System.out.println("mock_back.jsp 동작 끝");
 			
 		%>
 	</body>

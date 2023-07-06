@@ -12,7 +12,7 @@ public class MemberDAO {
 	private static MemberDAO instance = new MemberDAO();
 	//MemberDAO클래스 안의 것을 사용하고싶으면, 생성자를 열어야하느데,이것을 instance에 담아주었고ㅡ
 	//private static으로 가두어놔서, 오직 이 MemberDAO instance에 담겨있는 회선만 사용할 수 있는 것이다.일부러
-	private static MemberDAO getInstance() {
+	public static MemberDAO getInstance() {
 		return instance;//생성자가 담겨있다.//싱글톤방식.
 	}
 	
@@ -66,11 +66,11 @@ public class MemberDAO {
 						&& rs.getString("user_password")!=null) {
 					result= 1;
 				}else {
-					result= -1;
+					result= 0;
 				}
 				
 			}else {	
-				result = 0;
+				result = -1;
 			}
 			
 		}catch(Exception e) {
@@ -88,7 +88,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	//사용자 정보 조회
+	//사용자 정보 조회//입력받은 아이디를 매개변수로 받아 이 녀석이 기준점이 된 객체를 반환받는 메소드
 	public Member getMember(String user_id ) {
 		Member m =null;
 		String sql = "select * from member where user_id = ? ";
@@ -99,7 +99,7 @@ public class MemberDAO {
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1,user_id);
+			pstmt.setString(1,user_id);//1번째에 사용자로부터 받은 user_id를 ?에 넣는다.
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -116,7 +116,7 @@ public class MemberDAO {
 				
 			}
 		}catch(Exception e) {
-				System.out.println("DAO.getMember 접속 중 오류 발생:"+e);
+				System.out.println("DAO.getMember() 접속 중 오류 발생:"+e);
 		}finally {
 			try {
 				if(rs!=null)rs.close();
@@ -129,8 +129,74 @@ public class MemberDAO {
 		}
 		return m;
 	}
-}
 	
+	public int confirmId(String userid) {
+		int result = -1;
+		String sql="select * from member "; 
+		sql+="where user_id= '"+userid+"';";
+		Connection conn=null;
+		Statement stmt=null;
+		ResultSet rs=null;
+		try {
+			conn=getConnection();
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			
+			if(rs.next()) {//해당하는 데이터가 있으니, rs.next() -> true로 나와 result를 1로하라고 명령을할 수 있는 것임./
+				//해당 아이디가 데이터베이스에 존재하는 경우, 중복아이디가 있어서 회원가입을 반려해야하는 경우
+				result= 1;
+			}else {
+				//해당 아이디가 데이터베이스에 없는 경우. 회원가입을 허가해야하는경우
+				result=-1;
+			}
+		}catch(Exception e) {
+			System.out.println("MemberDAO.confirmID() 접속 중 오류 :"+e);
+		}finally {
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception ex) {
+				System.out.println("MemberDAO.confirmId() 접속 해제 중 오류:"+ex);
+			}
+		}
+		return result;
+		
+		
+	}
+
+	//회원가입 메서드
+	//매개변수로 데이터(객체)를 가져올 수 있다.
+	public int insertMember(Member m ) {
+		int result= -1;
+		String sql="insert into member (user_id, user_password, user_name, user_tel, user_birth) values (?,?,?,?,?)";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getUser_id() );
+			pstmt.setString(2, m.getUser_password());
+			pstmt.setString(3,  m.getUser_name());
+			pstmt.setString(4,  m.getUser_tel());
+			pstmt.setString(5, m.getUser_birth());
+			
+			result=pstmt.executeUpdate();//execueUpdate()의 반환값은 변경된 row수 이다! //변경된 row수가 return값이므로 1만을 반환한다.당연
+			System.out.println("result값은 : "+result);
+		}catch(Exception e) {
+			System.out.println("MemberDAO.insertMember() 접속 중 오류 발생 :"+e);
+		}finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			}catch(Exception ex) { 
+				System.out.println("MemberDAO.inserMember() 접속 해제 중 오류 발생 :"+ex);
+			}
+		}
+		
+		return result;//정상적으로 db에 가입처리 되면 result값은 1이다.
+	}
 	
 	
 	

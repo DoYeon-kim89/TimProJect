@@ -1,4 +1,4 @@
-package beans;
+	package beans;
 
 public class Member {
 	private String user_seq;

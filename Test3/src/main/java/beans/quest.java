@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.ArrayList;
+
 public class quest {
 	
 	private String quest_category;
@@ -102,6 +104,37 @@ public class quest {
 	public void setQuest_seq(int quest_seq) {
 		this.quest_seq = quest_seq;
 	}
+	
+	
+	
+	//세션에 무작위 번호 40개 넣기
+	ArrayList<Integer> RandomQuestNum = new ArrayList<Integer>();
+	
+	public ArrayList<Integer> getRandom() {
+		
+		
+		int [] r = new int[40];
+		
+		for (int i=0; i<40; i++) {	  
+			 r[i]=(int)((Math.random() * 500) +1);	
+			 for (int j=0; j<i; j++) { //중복번호 제거
+				  if(r[i] == r[j]){
+					  i--;
+					  break;
+				  }  
+				  
+			  }
+			  System.out.println(i+"번째 : "+r[i]); 
+			  	  
+		}
+		
+		for (int i=0; i<40; i++) {
+			RandomQuestNum.add(r[i]);
+		}
+		System.out.println("랜덤넘버 : "+RandomQuestNum);
+		return RandomQuestNum;
+	}
+	
 	
 	
 }

@@ -60,22 +60,10 @@
                             <img src="images/arr.png" alt="바로가기">
                         </a>
                     </div>
-                    <!--<div>
-                        <a href="#">로그인</a>
-                    </div>
-                    <div>
-                        <a href="#">아이디 찾기</a>
-                    </div>
-                    <div>
-                        <a href="#">비밀번호 찾기</a>
-                    </div>
-                    <div>
-                        <a href="#">회원가입</a>
-                    </div>-->
+                    
                 </div>
             </div>
-            <!--<div class="side">
-            </div>-->
+            
             <div class="footer">
             </div>
         </div>

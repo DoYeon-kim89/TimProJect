@@ -22,12 +22,12 @@
             </div>
             <div class="contents">
                 <div class="first">
-                	<a href="#">
+                	<a href="menu.jsp">
 	                	<div class="in_first_one">
 	                		1종 보통
 	                	</div>
 	                </a>
-	                <a href="#">
+	                <a href="menu.jsp">
 	                	<div class="in_first_two">
 	                		2종 보통
 	                	</div>

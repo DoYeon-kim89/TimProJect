@@ -1,46 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="beans.quest" %>
+   
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title></title>
+        <title>드래그로 보기</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/style9.css">
         <script src="js/script2.js"></script>
     </head>
     <body>
-        <div id="wrap">
-            <div class="header">
-                <ul class="menu">
-                    <li><a href="information.jsp">시험안내</a></li>
-                    <li><a href="#">오답노트</a></li>
-                    <li><a href="#">마이 페이지</a></li>
-                </ul>
-                <!--<div class="pyo">
-                    <img src="images/arrow.png" alt="arrow">
-                </div>
-                <ul class="menu_expended_1">
-                    <li><a href="#">대형</a></li>
-                    <li><a href="#">보통</a></li>
-                    <li><a href="#">소형</a></li>
-                    <li><a href="#">특수</a></li>
-                    <li><a href="#">|</a></li>
-                </ul>
-                
-                <ul class="menu_expended_2">
-                    <li><a href="#">보통</a></li>
-                    <li><a href="#">소형</a></li>
-                    <li><a href="#">원동기장치자전거 면허</a></li>
-                </ul>-->
-            </div>
+        
+                <jsp:include page="header.jsp"></jsp:include>
+               
+           
             <div class="contents">
                 
                 <div class="many">
-                    <!--<div class="fourty">
-                            총 40문제/40분
-                    </div>-->
+                    
                     <div class="contents_1">
-                        드래그로 보기
+                        한문제씩 보기
                     </div>
                     <div class="stopWatch">
                         <div class="time">
@@ -54,42 +36,52 @@
                             </div>
                       
                     </div>
+                    <%
+                    	
+                    	
+                    %>
                     <div class="problem_group">
-                        <div class="number" name="">
-                            문제번호/
+                 	 
+                    
+                        <div class="number" >
+                        
+                         
+                          (실제문제번호) : ${questList.get((randomNumber.get(pageNum))-1).getQuest_seq() }
+                        
                         </div>
                         <div class="problem">
-                            문제
+                        	${ pageNum+1 } .
+                            ${questList.get((randomNumber.get(pageNum))-1).getQuest_script() }
                         </div>
                     </div>
                 </div>
                 <div class="example">
                     
                     <div class="one">
-                        1. 보기
+                    	1. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex1() }
                     </div>
                     <div class="two">
-                        2. 보기
+                   		2. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex2()	 }
                     </div>
                     <div class="three">
-                        3. 보기
+                        3. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex3() }
                     </div>
                     <div class="four">
-                        4. 보기
+                        4. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex4() }
                     </div>
                     <div class="five">
-                        5. 보기
+                        5. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex5() }
                     </div>
                 </div>
-                <div class="la">
-                    <a href="#"><img src="images/LA.png" alt="왼쪽 화살표"></a>
+                <div class="la"><!-- 페이지0일때는 버튼 없애거나 아예 막을 수 없나,.? -->
+                    <a href="quest.do?what=<%= "-1" %>"><img src="images/LA.png" alt="왼쪽 화살표"></a>
                 </div>
                 <div class="ra">
-                    <a href="#"><img src="images/RA.png" alt="오른쪽 화살표"></a>
+                    <a href="quest.do?what=<%= "1" %>"><img src="images/RA.png" alt="오른쪽 화살표"></a>
                 </div>
                 <div class="csa">
                     <div class="current">
-                        1
+                        ${ pageNum+1 }<!-- 현재 페이지 : -->
                     </div>
                     <div class="slash">
                         /
@@ -98,25 +90,11 @@
                         40
                     </div>
                 </div>
-                    <!--<div>
-                        <a href="#">로그인</a>
-                    </div>
-                    <div>
-                        <a href="#">아이디 찾기</a>
-                    </div>
-                    <div>
-                        <a href="#">비밀번호 찾기</a>
-                    </div>
-                    <div>
-                        <a href="#">회원가입</a>
-                    </div>-->
+                    <jsp:include page="find.jsp"></jsp:include>
                 
             </div>
-            <!--<div class="side">
-            </div>-->
-            <div class="footer">
-            </div>
-        </div>
+            
+       
     </body>
    
 </html>
