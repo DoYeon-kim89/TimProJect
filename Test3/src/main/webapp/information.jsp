@@ -25,7 +25,7 @@
                         </a>
                     </div>
                     <div class="information">
-                        <a href="guide2.html">
+                        <a href="information/guide2.html">
                             면허 시험 순서
                             <img src="images/arr.png" alt="바로가기">
                         </a>

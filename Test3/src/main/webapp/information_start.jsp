@@ -12,14 +12,7 @@
     <body>
     	
         <div id="wrap">
-            <div class="header">
-                <ul class="menu">
-                    <li><a href="information.jsp">시험안내</a><li>
-                    <li><a href="#">오답노트</a></li>
-                    <li><a href="mypage(Rina ver).jsp">마이 페이지</a></li>
-                </ul>
-                
-            </div>
+            <jsp:include page="header.jsp"></jsp:include>
             <div class="contents">
                 <div class="first">
                 	<a href="menu.jsp">

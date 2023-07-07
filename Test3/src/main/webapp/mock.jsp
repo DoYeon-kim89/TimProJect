@@ -22,7 +22,7 @@
                 <div class="many">
                     
                     <div class="contents_1">
-                        한문제씩 보기
+                        한문제씩 보기<!-- 모바일 앱을 모티브로 했으니, 이 div는 삭제하고싶어요 -->
                     </div>
                     <div class="stopWatch">
                         <div class="time">
