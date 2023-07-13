@@ -198,6 +198,7 @@ public class MemberDAO {
 		return result;//정상적으로 db에 가입처리 되면 result값은 1이다.
 	}
 	
+	//김리나의 추가영역 23.07.13 추가
 	
 	
 	
