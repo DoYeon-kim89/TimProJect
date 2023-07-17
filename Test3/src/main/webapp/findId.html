@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style2.css">
+        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <div id="wrap">
+            <jsp:include page="header.jsp"></jsp:include>
+            <div class="contents">
+                    <div class="inside">            
+                        <form method="get" action="findId2.html">
+                                <h2>아이디를 찾습니다.</h2>
+                            <span>이름</span><input type="text" name="id_name" placeholder="이름을 입력하세요."><br>
+                            <span style="left: 10px; position: relative;">전화번호</span><input type="text" name="phone" placeholder="번호를 입력하세요."><br>
+                            <!--<span>찾은 비밀번호</span><input type="text" name="password" placeholder="비밀번호가 보일 자리입니다.">-->
+                            <div class="lnj">                    
+                                <div class="login"><a href="findId2.html"><input type="submit" style="opacity:0;">찾기</a></div>
+                                <!--<div class="join"><a href="#">회원가입</a></div>-->
+                                <div class="find">
+                                    <!--<a href="#">비밀번호 찾기</a>
+                                    |-->
+                                    <a href="findPw.html">비밀번호 찾기</a>
+                                    |
+                                    <a href="join.html">회원가입</a>
+                                </div>
+                                                    
+                            </div>
+                        </form>
+                <!--<div class="car">
+                    <img src="images/car.png" alt="모의고사">
+                    <span>모의고사</span>
+                </div>
+                <div class="note">
+                  <img src="images/check.png" alt="오답노트">
+                    <span>오답노트</span>
+                </div>
+                <div class="edu">
+                     <img src="images/education.png" alt="유형별 학습">
+                    <span>유형별 학습</span>
+                </div>
+                <div>
+                    <a href="#">로그인</a>
+                </div>
+                <div>
+                    <a href="#">아이디 찾기</a>
+                </div>
+                <div>
+                    <a href="#">비밀번호 찾기</a>
+                </div>
+                <div>
+                    <a href="#">회원가입</a>
+                </div>-->
+                </div>
+            </div>
+            <!--<div class="side">
+            </div>-->
+            <div class="footer">
+            </div>
+        </div>
+    </body>
+</html>
