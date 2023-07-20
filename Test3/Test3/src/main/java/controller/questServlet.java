@@ -29,7 +29,11 @@ public class questServlet extends HttpServlet {
 		
 		
 		
-		System.out.println(what);
+		System.out.println("답"+what);
+		
+		int user_Pick  = Integer.parseInt(request.getParameter("what"));
+		System.out.println("답 패러미터 다시 출력"+user_Pick);
+		
 		if(what.equals("1")) {
 			int ppage = (int)session2.getAttribute("pageNum");
 			if(ppage<39) {
@@ -43,7 +47,12 @@ public class questServlet extends HttpServlet {
 				System.out.println("totalScore 페이지로 호출하자");
 				
 			}
-		}else {
+			
+		}
+		
+		
+		else
+		{
 			int ppage = (int)session2.getAttribute("pageNum");
 			if(ppage>0) {
 				ppage--;
@@ -65,7 +74,7 @@ public class questServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 	}
 
 }

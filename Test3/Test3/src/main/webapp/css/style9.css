@@ -73,6 +73,12 @@ td{
     left: 550px;
 }
 
+input[type="submit"]{
+	display:block;
+	
+	
+}
+
 table{
     margin:0 auto;
 
@@ -350,6 +356,7 @@ border-radius: 10px;
 
 
 }
+
 .menu_expended_1{
     display:none;
     width:350px;

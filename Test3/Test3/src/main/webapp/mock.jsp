@@ -25,16 +25,18 @@
    	   <c:set var="name" value="${loginUser.user_id }"/>
    		
    		<!--그 c 태그를 밑에서 스크립트릿 안에서 연결하여 구현한 것임 -->
-   	  	<%Object o = pageContext.getAttribute("name");
-   	  	System.out.println("user id: "+o);%>
-   	  	<!--위의 object 타입의 o가 유저 아이디임~  -->
+   	  	<%String user_Id = String.valueOf(pageContext.getAttribute("name"));
+   	  	System.out.println("user Id: "+user_Id);%>
+   	  	<!--1. 위의 object 타입의 user_Id가 유저 아이디임~  -->
+   	  <!-- user_Pick은 questServlet 에.-->
+   	  
    	  <%
    	   try{
    		   Class.forName("com.mysql.cj.jdbc.Driver");
    		   conn = DriverManager.getConnection(url, db_id, db_pw);
    		   stmt = conn.createStatement();
    		   
-   		String sql = "insert into incorrect_table(user_id, user_Pick, quest_correct, used_quest_no, user_save_time) values('"+id+"');";
+   		String sql = "insert into incorrect_table(user_Id, user_Pick, quest_correct, used_quest_no, user_save_time) values('"+user_Id+"');";
 		
    		%>
    	 	
@@ -59,10 +61,7 @@
         <link rel="stylesheet" href="css/style9.css">
         <script src="js/script2.js"></script>
         <style>
-        	input{
-        		position:absolute;
-        		z-index:1;
-        	}
+        	
         	a{
         		position:relative;
         		z-index:2;
@@ -74,7 +73,14 @@
                 <jsp:include page="header.jsp"></jsp:include>
              <!-- 김리나 추가함 23.07.13--> 
             
-           
+             
+             <!-- 김리나 테스트용<form action="#" method="post">
+               		<input type="hidden" name="a" value="good">
+        
+  					<input type="submit" value="전송!">             		
+               		
+               		
+               </form>-->
             <div class="contents">
                 
                 <div class="many">
@@ -95,12 +101,24 @@
                       
                     </div>
                    
+                    	<!-- <form action="#" method="get">
+                    	
+                    		<input type="hidden" name="good" value="1" style="width:100px; position:relative;">
+                    		<>
+                    		
+                    		<input type="hidden" name="good" value="2" style="width:100px; position:relative; top:10px;">
+                    		
+                    		<input type="submit">
+                    		
+                    	
+                    	</form>-->
                     <div class="problem_group">
-                 	 
-                    
+                 
+                 		 
+                    <!-- int quest_number = -->
                         <div class="number" >
                         
-                         
+                       
                           (실제문제번호) : ${questList.get((randomNumber.get(pageNum))-1).getQuest_seq() }
                         
                         </div>
@@ -110,27 +128,96 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- 김리나 23.07.17 -->
+                 <c:set var="quest_number" value="${questList.get((randomNumber.get(pageNum))-1).getQuest_seq() }"></c:set>
+ 				
+ 				<!-- . used_quest_no -->
+ 				<% Object used_quest_no = (int)pageContext.getAttribute("quest_number");%>
+                <%System.out.println("used_quest_no : "+used_quest_no); %>
+                
+         
                 <div class="example">
-                    <form action="#" method="get">
-	                    <div class="one">	              
-    	                	
-    	                	<a href="quest.do?what=<%= "1" %>"><input type="hidden" name="answer" value="1">1. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex1() }</a>
-                    	</div>
+                    <form action="quest.do" method="get">
+	                   
+                    	<div class="one">	             
+    	                	<input type="hidden" name="what" value="1">
+   	                		<input type="submit" value="1. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex1() }">
+   	                	
+   	                	<!--230719 1. form 태그를 다섯개 두고. 2. 같은 경로로 3. (히든의) value를 바꾼다. -->
+   	                		
+   	                		<!--style="position: absolute;
+   	                	
+   	                		
+    width: 737.7px;
+    /* height: auto; */
+    z-index: 10;
+    /* display: block; */
+    height: 46px;
+    left: 500px;" onclick="c()"-->
+    					</div>
+    				</form>
+    				<form action="quest.do" method="get">
+	                   
+                    	<div class="two">	             
+    	                	<input type="hidden" name="what" value="2">
+   	                		<input type="submit" value="2. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex2() }">
+   	                	
+   	                	<!--230719 1. form 태그를 다섯개 두고. 2. 같은 경로로 3. (히든의) value를 바꾼다. -->
+   	                		
+    					</div>
+    				</form>
+    				 <form action="quest.do" method="get">
+	                   
+                    	<div class="three">	             
+    	                	<input type="hidden" name="what" value="3">
+   	                		<input type="submit" value="3. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex3() }">
+   	                	
+   	                	<!--230719 1. form 태그를 다섯개 두고. 2. 같은 경로로 3. (히든의) value를 바꾼다. -->
+   	                		
+   	  
+    					</div>
+    				</form>
+    				<form action="quest.do" method="get">
+	                   
+                    	<div class="four">	             
+    	                	<input type="hidden" name="what" value="4">
+   	                		<input type="submit" value="4. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex4() }">
+   	                	
+   	                	<!--230719 1. form 태그를 다섯개 두고. 2. 같은 경로로 3. (히든의) value를 바꾼다. -->
+   	                		
+   	  
+    					</div>
+    				</form>
+    				<form action="quest.do" method="get">
+	                   
+                    	<div class="five">	             
+    	                	<input type="hidden" name="what" value="5">
+   	                		<input type="submit" value="5. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex5() }">
+   	                	
+   	                	<!--230719 1. form 태그를 다섯개 두고. 2. 같은 경로로 3. (히든의) value를 바꾼다. -->
+   	                		
+   	  
+    					</div>
+    				</form>
+	                  <!-- 
                     	<div class="two">
-	                   		<a href="quest.do?what=<%= "1" %>"><input type="hidden" name="answer" value="2">2. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex2()	 }
+	                   		<a href="quest.do?what=<%= "1" %>" onclick="a1()"><input type="hidden" name="answer" value="2번">2. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex2()	}</a>
                     	</div>
                     	<div class="three">
-                       		<a href="quest.do?what=<%= "1" %>"><input type="hidden" name="answer" value="3">3. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex3() }
+                       		<a href="quest.do?what=<%= "1" %>" onclick="a1()">
+       															<input type="button" name="answer" value="3번">3. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex3() }</a>
                     	</div>
                     	<div class="four">
-                       		<a href="quest.do?what=<%= "1" %>"><input type="hidden" name="answer" value="4">4. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex4() }
+                       		<a href="quest.do?what=<%= "1" %>" onclick="a1()"><input type="hidden" name="answer" value="4번">4. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex4() }</a>
                     	</div>
                     	<div class="five">
-	                        <a href="quest.do?what=<%= "1" %>"><input type="hidden" name="answer" value="5">5. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex5() }
+	                       <a href="quest.do?what=<%= "1" %>" onclick="a1()"><input type="hidden" name="answer" value="5번" >5. ${questList.get((randomNumber.get(pageNum))-1).getQuest_ex5() }</a>
     	                </div>
+    	                -->
     	             </form>
                 </div>
-               
+             
                 <div class="la"><!-- 페이지0일때는 버튼 없애거나 아예 막을 수 없나,.? -->
                     <a href="quest.do?what=<%= "-1" %>"><img src="images/LA.png" alt="왼쪽 화살표"></a>
                 </div>
@@ -159,17 +246,108 @@
                
                 
             </div>
-      
-     <% String a1 = request.getParameter("answer");
-        //int a1_1 = Integer.parseInt(a1);
-        
-        //string을 목적한 게 아닌데 int로 안변해서 지움... 
-        //암튼 별 상관은 없으니까 String으로 씁니다 답 패러미터를!
-        
-     	System.out.println("답:"+a1);
-     
-     %>
-       	
+            
+            <form action="" method="get">
+            	<input type="submit" name="test" value="abcde">
+            	<input type="submit" value="굿임굿" onclick="execu()">
+            	<!--<div id="goodds" style="width:500px; height:200px; background-color:blue;" onclick="execu()">
+            		클릭해봐 
+            	</div>-->
+            
+            </form>
+            
+      	<form method="post" action="quest.do?what=<%= "1" %>">
+      		<input type="submit" name="qq" id="ww" onclick="test2()">
+      		
+      	</form>
+    
+   		<script>
+   		function c(){
+   			console.log("찍힘");
+   			
+   		}
+   		var fo = document.getElementsByTagName("form")[0];
+		console.log(fo);
+		var la = document.getElementById("realLast");
+		console.log(la);
+		var w = document.getElementById("ww");
+		console.log(w);
+   			function a1(){
+   				var today = new Date();
+   				var time = today.toLocaleDateString()+" "+today.toLocaleTimeString();
+   				console.log(time);
+   				la.setAttribute("value", time);
+				
+   				
+   				
+   				
+   			}
+   			
+   		
+   			function tes(){
+   				//
+   				console.log("test 실행됨");
+   			}
+   			function consol(){
+   				console.log("잘되고 있습니다.");
+   				
+   			}
+   			function execu(){
+   				//console.log("되냐?");
+   				//window.location.href = "http://www.w3schools.com";
+   				//안된다.
+   				//window.location.href="quest.do?what=<       \"1\"           ";
+   			}
+   			function test2(){
+   				
+   				var today = new Date();
+   				var time = today.toLocaleDateString()+" "+today.toLocaleTimeString();
+   				console.log(time);
+   				w.setAttribute("value", time);
+				
+   			}
+   		 <% 
+		 	
+   		 //String a2 = request.getParameter("answer");
+	        //int a1_1 = Integer.parseInt(a1);
+	        
+	        //string을 목적한 게 아닌데 int로 안변해서 지움... 
+	        //암튼 별 상관은 없으니까 String으로 씁니다 답 패러미터를!
+	        
+	     	//System.out.println("!답:"+a2);
+	     	//String p = request.getParameter("a");
+	     	//System.out.println("a 패러미터:"+p);
+   		 	
+	     	//test2
+	     	String test = request.getParameter("qq");
+   		 	System.out.println("테스트 값: "+test);
+	    
+   		 	//int user_Pick  = Integer.parseInt(request.getParameter("what"));
+   		 	//System.out.println("답 패러미터 다시 출력"+user_Pick);
+   		 	
+   		 	
+ 		
+   		 	
+ 			
+   		 	%>
+   	
+   			//김리나 23.07.14
+   			//if(a2!=null){
+   				//response.sendRedirect("quest.do?what=    "1"");
+   			//}
+   		
+  
+   			/*var d = document.getElementsByTagName("div")[12];
+   			console.log(d);
+   			var d_a = d.getElementsByTagName("a")[0];
+   			console.log(d_a);
+   			d_a.addEventListener("click", function(){
+   				console.log("클릭되었습니다.");
+   				fo.submit();
+   			});*/
+   			
+   		</script>
+   		
     </body>
-   
+    
 </html>
